@@ -13,7 +13,7 @@ function App() {
 
   const updateTodo = (id, todo) => {
     setTodos((prev) =>
-      prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
+      prev.map((prevTodo) => (prevTodo.id === id ? { ...prevTodo, ...todo } : prevTodo))
     );
   };
 
@@ -43,11 +43,15 @@ function App() {
   }, [todos]);
 
   return (
-    <TodoProvider
-      value={{ todos, addTodo, removeTodo, toggleTodo, updateTodo }}
-    >
-      <div className="bg-[url('https://images.pexels.com/photos/6192123/pexels-photo-6192123.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] bg-cover bg-center bg-no-repeat w-full min-h-screen py-8">
-        <div className="w-full max-w-2xl mx-auto shadow-md shadow-white/10 rounded-lg px-4 py-3 text-white bg-[#1d1e1e]/80">
+    <TodoProvider value={{ todos, addTodo, removeTodo, toggleTodo, updateTodo }}>
+      <div className="min-h-screen w-full flex items-center justify-center">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://images.pexels.com/photos/6192123/pexels-photo-6192123.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+          }}
+        />
+        <div className="relative w-full max-w-2xl mx-auto shadow-md shadow-white/10 rounded-lg px-4 py-3 text-white bg-[#1d1e1e]/80">
           <h1 className="text-2xl font-bold text-center mb-8 mt-2">
             Manage Your Todos
           </h1>
